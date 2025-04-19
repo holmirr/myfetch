@@ -2,6 +2,7 @@
   "name": "myfetch",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +12,7 @@
   "keywords": ["fetch", "cookie", "http"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/myfetch.git"
+    "url": "https://github.com/holmirr/myfetch.git"
   },
   "dependencies": {
     "fetch-cookie": "^3.1.0",
