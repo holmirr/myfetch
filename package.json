@@ -1,5 +1,5 @@
 {
-  "name": "myfetch",
+  "name": "@holmirr/myfetch",
   "version": "1.0.1",
   "main": "index.js",
   "type": "module",
