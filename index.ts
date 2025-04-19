@@ -13,8 +13,16 @@ export default class MyFetch {
     this.defaultHeaders = defaultHeaders;
   }
 
-  async fetch(url: RequestInfo | URL, init?: RequestInit) {
-    return this.fetchCookie(url, {headers:{...this.defaultHeaders, ...init?.headers}, ...init});
+  public async fetch(url: RequestInfo | URL, init?: RequestInit) {
+    const response = await this.fetchCookie(url, {headers:{...this.defaultHeaders, ...init?.headers}, ...init});
+    if (!response.ok) {
+      throw new Error(`fetch failed:
+        status: ${response.status}
+        finalUrl: ${response.url}
+        responseBody: ${await response.text()}
+        `);
+    }
+    return response;
   }
 
   static init({cookieJar, defaultHeaders}: {cookieJar?: CookieJar, defaultHeaders?: RequestInit["headers"]} = {}) {
