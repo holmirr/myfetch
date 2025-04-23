@@ -9,6 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { CookieJar } from "tough-cookie";
 import fetchcookie from "fetch-cookie";
+function conciseText(text) {
+    const lines = text.trim().split(/\r?\n/);
+    const conciseLines = lines.map(line => line.trim()).filter(line => line !== "");
+    return conciseLines.join("\n");
+}
 export default class MyFetch {
     constructor({ cookieJar = new CookieJar(), defaultHeaders = {} } = {}) {
         this.cookieJar = cookieJar;
@@ -22,7 +27,7 @@ export default class MyFetch {
                 throw new Error(`fetch failed:
         status: ${response.status}
         finalUrl: ${response.url}
-        responseBody: ${yield response.text()}
+        responseBody: ${(yield response.text()).trim()}
         `);
             }
             return response;
