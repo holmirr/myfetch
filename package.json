@@ -1,31 +1,36 @@
 {
   "name": "@holmirr/myfetch",
-  "version": "1.0.2",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "version": "1.0.3",
+  "main": "dist/index.js",
   "type": "module",
+  "types": "dist/index.d.ts",
+
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "npm run build"
   },
-  "author": "holmirr",
-  "license": "ISC",
-  "description": "fetch with cookie and default headers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holmirr/myfetch.git"
+  },
   "keywords": [
     "fetch",
     "cookie",
-    "http"
+    "tough-cookie",
+    "fetch-cookie"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/holmirr/myfetch.git"
+  "author": "holmirr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/holmirr/myfetch/issues"
   },
+  "homepage": "https://github.com/holmirr/myfetch#readme",
+  "description": "A simple fetch wrapper with cookie support",
   "dependencies": {
     "fetch-cookie": "^3.1.0",
     "tough-cookie": "^5.1.2"
   },
-  "devDependencies": {
-    "typescript": "^5.8.3"
-  }
+  "files": [
+    "dist"
+  ]
 }
