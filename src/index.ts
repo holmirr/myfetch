@@ -8,6 +8,23 @@ function conciseText(text: string) {
   return conciseLines.join("\n");
 }
 
+export class MyFetchError extends Error {
+  status: number;
+  finalUrl: string;
+  responseBody: string;
+
+  constructor(status: number, finalUrl: string, responseBody: string) {
+    super(`fetch failed...
+      status: ${status}
+      finalUrl: ${finalUrl}
+      responseBody: ${responseBody}
+      `);
+    this.status = status;
+    this.finalUrl = finalUrl;
+    this.responseBody = responseBody;
+  }
+}
+
 export default class MyFetch {
   public cookieJar: CookieJar;
   public fetchCookie: FetchCookieImpl<RequestInfo | URL, RequestInit, Response>;
@@ -22,11 +39,7 @@ export default class MyFetch {
   public async fetch(url: RequestInfo | URL, init?: RequestInit) {
     const response = await this.fetchCookie(url, {headers:{...this.defaultHeaders, ...init?.headers}, ...init});
     if (!response.ok) {
-      throw new Error(`fetch failed:
-        status: ${response.status}
-        finalUrl: ${response.url}
-        responseBody: ${(await response.text()).trim()}
-        `);
+      throw new MyFetchError(response.status, response.url, await response.text());
     }
     return response;
   }
